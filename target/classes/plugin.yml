@@ -1,0 +1,20 @@
+name: ProAuction
+version: 1.0.0
+main: me.flex.proauction.ProAuctionPlugin
+api-version: "1.21"
+author: Flex
+description: Standalone professional auction house plugin
+
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+  ah:
+    description: Open the auction house
+    usage: /ah
+    aliases: [auction, auctionhouse]
+
+permissions:
+  proauction.use:
+    default: true
+  proauction.admin:
+    default: op

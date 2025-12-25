@@ -55,10 +55,11 @@ public class ProAuctionPlugin extends JavaPlugin {
         dataStore = new YamlDataStore(this);
         auctionManager.setAll(dataStore.loadListings(), dataStore.loadExpired());
 
-        // Update checker (reads settings.yml -> updates.*)
+        // GUARANTEED PROOF LOG
+        getLogger().info("Update checker: starting...");
         UpdateChecker.checkAsync(this);
 
-        // Process expirations periodically + save as a safety net
+        // Expiration + periodic save safety net
         getServer().getScheduler().runTaskTimer(this, () -> {
             auctionManager.processExpirations();
             saveDataNow();
@@ -73,7 +74,6 @@ public class ProAuctionPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         saveDataNow();
-        getLogger().info("ProAuction disabled");
     }
 
     public void saveDataNow() {

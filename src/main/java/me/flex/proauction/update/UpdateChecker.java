@@ -14,13 +14,16 @@ public final class UpdateChecker {
 
     public static void checkAsync(ProAuctionPlugin plugin) {
         boolean enabled = plugin.getSettingsConfig().getBoolean("updates.enabled", true);
-        if (!enabled) return;
 
         String owner = plugin.getSettingsConfig().getString("updates.github-owner", "").trim();
-        String repo = plugin.getSettingsConfig().getString("updates.github-repo", "").trim();
+        String repo  = plugin.getSettingsConfig().getString("updates.github-repo", "").trim();
+
+        plugin.getLogger().info("Update checker: enabled=" + enabled + ", owner=" + owner + ", repo=" + repo);
+
+        if (!enabled) return;
 
         if (owner.isEmpty() || repo.isEmpty()) {
-            plugin.getLogger().warning("Update checker is enabled but updates.github-owner/repo are not set in settings.yml");
+            plugin.getLogger().warning("Update checker: missing updates.github-owner or updates.github-repo in plugins/ProAuction/settings.yml");
             return;
         }
 
@@ -29,6 +32,7 @@ public final class UpdateChecker {
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
                 String api = "https://api.github.com/repos/" + owner + "/" + repo + "/releases/latest";
+                plugin.getLogger().info("Update checker: querying " + api);
 
                 HttpURLConnection con = (HttpURLConnection) new URL(api).openConnection();
                 con.setRequestMethod("GET");
@@ -38,8 +42,10 @@ public final class UpdateChecker {
                 con.setRequestProperty("User-Agent", "ProAuction/" + current);
 
                 int code = con.getResponseCode();
+                plugin.getLogger().info("Update checker: HTTP " + code);
+
                 if (code != 200) {
-                    plugin.getLogger().warning("Update check failed (HTTP " + code + ").");
+                    plugin.getLogger().warning("Update checker failed (HTTP " + code + "). Make sure you published a GitHub Release under /releases.");
                     return;
                 }
 
@@ -50,14 +56,16 @@ public final class UpdateChecker {
                 }
 
                 String json = sb.toString();
-
                 String tag = extractJsonString(json, "tag_name");
-                if (tag == null || tag.isBlank()) return;
 
-                // common pattern: v1.0.0 -> 1.0.0
+                if (tag == null || tag.isBlank()) {
+                    plugin.getLogger().warning("Update checker: could not read tag_name from GitHub response.");
+                    return;
+                }
+
                 String latest = tag.startsWith("v") || tag.startsWith("V") ? tag.substring(1) : tag;
 
-                if (!equalsVersion(current, latest)) {
+                if (!normalize(current).equalsIgnoreCase(normalize(latest))) {
                     plugin.getLogger().info("Update available: " + latest + " (current: " + current + ")");
                     plugin.getLogger().info("Download: https://github.com/" + owner + "/" + repo + "/releases/latest");
                 } else {
@@ -65,13 +73,9 @@ public final class UpdateChecker {
                 }
 
             } catch (Exception ex) {
-                plugin.getLogger().warning("Update check error: " + ex.getMessage());
+                plugin.getLogger().warning("Update checker error: " + ex.getMessage());
             }
         });
-    }
-
-    private static boolean equalsVersion(String a, String b) {
-        return normalize(a).equalsIgnoreCase(normalize(b));
     }
 
     private static String normalize(String v) {
@@ -81,7 +85,6 @@ public final class UpdateChecker {
         return v;
     }
 
-    // tiny JSON key string extractor (no external libs)
     private static String extractJsonString(String json, String key) {
         String needle = "\"" + key + "\":";
         int i = json.indexOf(needle);
