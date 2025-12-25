@@ -1,0 +1,23 @@
+messages:
+  not-enough-money: "&cYou do not have enough %currency%."
+  cannot-buy-own: "&cYou cannot buy your own listing."
+  purchase-success: "&aPurchased for &f%price% %symbol% &7(%currency%)."
+  seller-paid: "&7You sold an item for &f%price% %symbol% &7(%currency%)."
+  listing-missing: "&cThat listing no longer exists."
+  inventory-full: "&cYour inventory is full."
+  currency-not-usable: "&cThat currency is not usable right now."
+  transaction-failed: "&cTransaction failed."
+
+  sell-usage: "&cUsage: /ah sell <price> [currency]"
+  sell-air: "&cYou must hold an item in your hand."
+  sell-invalid-price: "&cInvalid price."
+  sell-invalid-currency: "&cUnknown currency: %currency%"
+  sell-currency-not-usable: "&cThat currency is not usable right now."
+  sell-banned-item: "&cThat item is banned from being listed."
+  sell-max-reached: "&cYou have reached the maximum active listings (%max%)."
+  sell-success: "&aListed item for &f%price% %symbol% &7(%currency%). &7ID: &f%id%"
+
+  ban-no-permission: "&cNo permission."
+  ban-usage: "&cHold an item and run /ah ban"
+  ban-added: "&aThis item is now banned from being listed."
+  ban-removed: "&eThis item is no longer banned."

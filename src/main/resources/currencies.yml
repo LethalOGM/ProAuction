@@ -1,0 +1,12 @@
+currencies:
+  vault:
+    display-name: "&aMoney"
+    symbol: "$"
+    type: VAULT
+
+  rubies:
+    display-name: "&cRubies"
+    symbol: "◆"
+    type: RUBIES
+    placeholder: "%shards_value%"
+    set-command: "rubie set %player% %amount%"

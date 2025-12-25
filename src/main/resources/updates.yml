@@ -1,0 +1,12 @@
+updates:
+  enabled: true
+
+  # Your GitHub repo
+  owner: "YOUR_GITHUB_NAME"
+  repo: "ProAuction"
+
+  # Check on server startup
+  check-on-startup: true
+
+  # Notify OP players on join
+  notify-ops-on-join: true

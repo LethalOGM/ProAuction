@@ -1,0 +1,19 @@
+settings:
+  default-currency: "vault"
+  listing:
+    duration-seconds: 172800   # 48 hours
+    max-active-per-player: 10
+    require-non-air: true
+    require-amount-positive: true
+
+  bans:
+    enabled: true
+
+##################################
+#For Further Updates Dont Remove This or mess with coding just utilize the open files here and the ProAuction will
+# Will stay working #############
+
+updates:
+  enabled: true
+  github-owner: "YOUR_GITHUB_USERNAME"
+  github-repo: "ProAuction"
