@@ -1,41 +1,35 @@
-# ProAuction
+PROAUCTION LICENSE (PROPRIETARY)
 
-ProAuction is a modern, performance-focused Auction House plugin designed for
-Paper 1.21+ servers. It provides a clean GUI experience, safe purchase handling,
-and optional MySQL support for large or networked servers.
+Copyright (c) 2025 LethalOGM
 
-## Features
-- Auction House browse GUI
-- My Listings management
-- Expired Items claim system
-- Safe purchase confirmation flow
-- Configurable GUI branding
-- Storage backends:
-  - YAML (default)
-  - MySQL (optional, auto-created tables)
-- Built with server performance and stability in mind
+All rights reserved.
 
-## Requirements
-- Paper 1.21+
-- Vault (recommended)
-- Any compatible economy plugin
+This software and associated files (the "Software") are proprietary and confidential.
+Permission is granted to use the Software solely on Minecraft servers owned or
+operated by the license holder, subject to the terms below.
 
-## Installation
-1. Place the plugin jar into `/plugins/`
-2. Restart the server
-3. Configure files in `plugins/ProAuction/`
+1. NO REDISTRIBUTION
+You may not copy, redistribute, publish, sell, sublicense, share, or make the
+Software available to any third party, whether in original or modified form.
 
-## Optional MySQL Support
-Enable in `settings.yml`:
+2. NO REVERSE ENGINEERING
+You may not reverse engineer, decompile, disassemble, or otherwise attempt to
+derive the source code, structure, or algorithms of the Software, except where
+explicitly permitted by applicable law.
 
-```yml
-storage:
-  backend: "MYSQL"
-  mysql:
-    enabled: true
-    host: "127.0.0.1"
-    port: 3306
-    database: "minecraft"
-    username: "root"
-    password: "password"
-    table-prefix: "PA_"
+3. NO UNAUTHORIZED MODIFICATIONS
+You may not modify the Software for the purpose of redistribution or resale.
+Normal configuration and usage as intended by the Software is permitted.
+
+4. LICENSE VALIDATION
+If the Software includes license key or validation mechanisms, bypassing,
+removing, or altering those mechanisms is strictly prohibited.
+
+5. TERMINATION
+This license is automatically terminated if any of these terms are violated.
+Upon termination, you must immediately stop using and delete all copies of the
+Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY
+ARISING FROM THE USE OF THE SOFTWARE.
